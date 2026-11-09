@@ -29,7 +29,8 @@ static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
         indicate_battery();
     }
 #endif
-#if IS_ENABLED(CONFIG_ZMK_USB) || IS_ENABLED(CONFIG_ZMK_BLE)
+#if IS_ENABLED(CONFIG_ZMK_USB) || IS_ENABLED(CONFIG_ZMK_BLE) ||                                  \
+    IS_ENABLED(CONFIG_ZMK_SPLIT_ESB_TRANSPORT)
     if (cfg->indicate_connectivity) {
         indicate_connectivity();
     }

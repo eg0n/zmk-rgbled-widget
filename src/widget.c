@@ -149,7 +149,8 @@ static void indicate_connectivity_internal(void) {
         blink.color = CONFIG_RGBLED_WIDGET_CONN_COLOR_DISCONNECTED;
         break;
     }
-#elif IS_ENABLED(CONFIG_ZMK_SPLIT_BLE)
+#elif IS_ENABLED(CONFIG_ZMK_SPLIT_BLE) || IS_ENABLED(CONFIG_ZMK_SPLIT_ESB_TRANSPORT)
+    // zmk-split-esb provides zmk_split_bt_peripheral_is_connected() for its link
     if (zmk_split_bt_peripheral_is_connected()) {
         LOG_CONN_PERIPHERAL("connected", CONNECTED);
         blink.color = CONFIG_RGBLED_WIDGET_CONN_COLOR_CONNECTED;
@@ -184,7 +185,7 @@ ZMK_SUBSCRIPTION(led_output_listener, zmk_endpoint_changed);
 #if IS_ENABLED(CONFIG_ZMK_BLE)
 ZMK_SUBSCRIPTION(led_output_listener, zmk_ble_active_profile_changed);
 #endif // IS_ENABLED(CONFIG_ZMK_BLE)
-#elif IS_ENABLED(CONFIG_ZMK_SPLIT_BLE)
+#elif IS_ENABLED(CONFIG_ZMK_SPLIT_BLE) || IS_ENABLED(CONFIG_ZMK_SPLIT_ESB_TRANSPORT)
 // run led_output_listener_cb on peripheral status change event
 ZMK_SUBSCRIPTION(led_output_listener, zmk_split_peripheral_status_changed);
 #endif

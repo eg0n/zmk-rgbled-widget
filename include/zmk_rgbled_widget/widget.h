@@ -10,7 +10,7 @@
 void indicate_battery(void);
 #endif
 
-#if IS_ENABLED(CONFIG_ZMK_BLE)
+#if IS_ENABLED(CONFIG_ZMK_BLE) || IS_ENABLED(CONFIG_ZMK_SPLIT_ESB_TRANSPORT)
 void indicate_connectivity(void);
 #endif
 
